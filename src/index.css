@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 201 88% 31%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 359 90% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 201 88% 95%;
+    --accent-foreground: 201 88% 31%;
+
+    --destructive: 359 90% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 201 88% 31%;
+
+    --radius: 0.75rem;
+    
+    --pella-blue: 201 88% 31%;
+    --pella-red: 359 90% 40%;
+    --pella-maroon: 358 42% 27%;
+    --pella-black: 0 0% 10%;
+    --pella-white: 0 0% 100%;
+    --pella-pink: 0 62% 89%;
+    
+    --glass-bg: 0 0% 100% / 0.8;
+    --glass-border: 201 88% 31% / 0.2;
+    
+    --gradient-blue: linear-gradient(135deg, hsl(var(--pella-blue)), hsl(201 88% 45%));
+    --gradient-red: linear-gradient(135deg, hsl(var(--pella-red)), hsl(358 60% 50%));
+    --shadow-blue: 0 10px 40px hsl(var(--pella-blue) / 0.15);
+    --shadow-elegant: 0 20px 60px hsl(0 0% 0% / 0.1);
+    
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: radial-gradient(circle at 1px 1px, hsl(var(--pella-blue) / 0.04) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-muted/40 backdrop-blur-xl border border-primary/30 shadow-2xl;
+  }
+  
+  .blue-glow {
+    @apply shadow-[0_0_30px_rgba(11,96,151,0.5)];
+  }
+  
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-[hsl(201_88%_40%)] to-[hsl(359_95%_55%)] bg-clip-text text-transparent;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  }
+}
