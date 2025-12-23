@@ -10,6 +10,8 @@ import PellaHomes from "./pages/PellaHomes";
 import EstateDetails from "./pages/EstateDetails";
 import WealthTitans from "./pages/WealthTitans";
 import Cooperative from "./pages/Cooperative";
+import TargetSavings from "./pages/TargetSavings";
+import LandBanking from "./pages/LandBanking";
 import NotFound from "./pages/NotFound";
 import PageTransition from "./components/PageTransition";
 
@@ -37,6 +39,8 @@ const AnimatedRoutes = () => {
         <Route path="/estates/:estateId" element={<PageTransition><EstateDetails /></PageTransition>} />
         <Route path="/wealth-titans" element={<PageTransition><WealthTitans /></PageTransition>} />
         <Route path="/cooperative" element={<PageTransition><Cooperative /></PageTransition>} />
+        <Route path="/cooperative/target-savings" element={<PageTransition><TargetSavings /></PageTransition>} />
+        <Route path="/cooperative/land-banking" element={<PageTransition><LandBanking /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
