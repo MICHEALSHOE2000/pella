@@ -1,10 +1,13 @@
-
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Target, Landmark, TreePine, ArrowRight } from "lucide-react";
+import targetImg from "@/assets/hero-estate.jpg";
+import landBankingImg from "@/assets/estates/itura.jpg";
+import agroImg from "@/assets/estates/pride-farm.jpg";
 
 const Cooperative = () => {
   return (
@@ -47,24 +50,29 @@ const Cooperative = () => {
               Investment Products
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
             <ScrollReveal variant="fadeUp" delay={0}>
               <Link to="/cooperative/target-savings" className="block h-full group">
-                <div className="glass-panel p-8 rounded-2xl h-full transition-all duration-300 border border-transparent hover:border-primary/20 hover:shadow-2xl hover:-translate-y-2 flex flex-col">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Target className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4 text-center">Target Savings</h3>
-                  <p className="text-foreground/70 text-center mb-6 flex-grow">
-                    Set your savings goals and earn competitive interest on your deposits. Flexible terms from 3 to 12 months.
-                  </p>
-                  <ul className="text-foreground/70 space-y-2 mb-8 text-sm">
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Up to 15% ROI annually</li>
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Flexible withdrawal</li>
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Goal-based savings</li>
-                  </ul>
-                  <div className="text-center mt-auto">
-                    <Button variant="outline" className="w-full rounded-full border-primary/20 group-hover:bg-primary group-hover:text-white transition-all">
+                <div className="relative h-[450px] sm:h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:-translate-y-2">
+                  <img src={targetImg} alt="Target Savings" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                  <div className="relative z-10 h-full p-6 sm:p-8 flex flex-col">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 mb-6 rounded-full bg-primary/20 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                      <Target className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Target Savings</h3>
+                      <p className="text-sm sm:text-base text-white/80 mb-6">
+                        Set your savings goals and earn competitive interest on your deposits. Flexible terms from 3 to 12 months.
+                      </p>
+                      <ul className="text-white/70 space-y-2 text-xs sm:text-sm mb-6">
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Up to 15% ROI annually</li>
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Flexible withdrawal</li>
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Goal-based savings</li>
+                      </ul>
+                    </div>
+                    <Button variant="default" className="w-full rounded-full bg-primary hover:bg-primary/90 font-bold py-5">
                       Learn More <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
@@ -74,21 +82,26 @@ const Cooperative = () => {
 
             <ScrollReveal variant="fadeUp" delay={0.1}>
               <Link to="/cooperative/land-banking" className="block h-full group">
-                <div className="glass-panel p-8 rounded-2xl h-full transition-all duration-300 border border-transparent hover:border-primary/20 hover:shadow-2xl hover:-translate-y-2 flex flex-col">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Landmark className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4 text-center">Land Banking</h3>
-                  <p className="text-foreground/70 text-center mb-6 flex-grow">
-                    Buy and hold strategic land assets with us. Benefit from land appreciation and secure your future.
-                  </p>
-                  <ul className="text-foreground/70 space-y-2 mb-8 text-sm">
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Buy & Hold strategy</li>
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>High appreciation potential</li>
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Professional management</li>
-                  </ul>
-                  <div className="text-center mt-auto">
-                    <Button variant="outline" className="w-full rounded-full border-primary/20 group-hover:bg-primary group-hover:text-white transition-all">
+                <div className="relative h-[450px] sm:h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:-translate-y-2">
+                  <img src={landBankingImg} alt="Land Banking" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                  <div className="relative z-10 h-full p-6 sm:p-8 flex flex-col">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 mb-6 rounded-full bg-primary/20 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                      <Landmark className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Land Banking</h3>
+                      <p className="text-sm sm:text-base text-white/80 mb-6">
+                        Buy and hold strategic land assets with us. Benefit from land appreciation and secure your future.
+                      </p>
+                      <ul className="text-white/70 space-y-2 text-xs sm:text-sm mb-6">
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Buy & Hold strategy</li>
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>High appreciation potential</li>
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Professional management</li>
+                      </ul>
+                    </div>
+                    <Button variant="default" className="w-full rounded-full bg-primary hover:bg-primary/90 font-bold py-5">
                       Learn More <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
@@ -98,21 +111,26 @@ const Cooperative = () => {
 
             <ScrollReveal variant="fadeUp" delay={0.2}>
               <Link to="/cooperative/land-banking?tab=agro" className="block h-full group">
-                <div className="glass-panel p-8 rounded-2xl h-full transition-all duration-300 border border-transparent hover:border-primary/20 hover:shadow-2xl hover:-translate-y-2 flex flex-col">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <TreePine className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4 text-center">Adopt a Farm</h3>
-                  <p className="text-foreground/70 text-center mb-6 flex-grow">
-                    Sponsor farmlands for 5 years with guaranteed returns, then convert to future estate ownership.
-                  </p>
-                  <ul className="text-foreground/70 space-y-2 mb-8 text-sm">
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>5-year farming income</li>
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Estate conversion</li>
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Dual ROI opportunity</li>
-                  </ul>
-                  <div className="text-center mt-auto">
-                    <Button variant="outline" className="w-full rounded-full border-primary/20 group-hover:bg-primary group-hover:text-white transition-all">
+                <div className="relative h-[450px] sm:h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:-translate-y-2">
+                  <img src={agroImg} alt="Adopt a Farm" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                  <div className="relative z-10 h-full p-6 sm:p-8 flex flex-col">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 mb-6 rounded-full bg-primary/20 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                      <TreePine className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Adopt a Farm</h3>
+                      <p className="text-sm sm:text-base text-white/80 mb-6">
+                        Sponsor farmlands for 5 years with guaranteed returns, then convert to future estate ownership.
+                      </p>
+                      <ul className="text-white/70 space-y-2 text-xs sm:text-sm mb-6">
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>5-year farming income</li>
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Estate conversion</li>
+                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div>Dual ROI opportunity</li>
+                      </ul>
+                    </div>
+                    <Button variant="default" className="w-full rounded-full bg-primary hover:bg-primary/90 font-bold py-5">
                       Learn More <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>

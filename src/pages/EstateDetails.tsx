@@ -18,7 +18,7 @@ import { MapPin, Shield, Calendar, Waves, FileCheck, DollarSign, Clock, Home, Me
 // Import estate images
 import ituraImg from "@/assets/estates/itura.jpg";
 import halleluyahImg from "@/assets/estates/halleluyah.jpg";
-import irorунImg from "@/assets/estates/irorun.jpg";
+import irorunImg from "@/assets/estates/irorun.jpg";
 import courtRoyale1Img from "@/assets/estates/court-royale-1.jpg";
 import courtRoyale2Img from "@/assets/estates/court-royale-2.jpg";
 import esperanzaImg from "@/assets/estates/esperanza.jpg";
@@ -34,7 +34,30 @@ import pellaCourts3 from "@/assets/estates/pella-courts-3.jpg";
 import pellaCourts4 from "@/assets/estates/pella-courts-4.jpg";
 import pellaCourts2Bed from "@/assets/estates/pella-courts-2bed.jpg";
 
-const estateData: Record<string, any> = {
+interface Feature {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+}
+
+interface DetailedEstate {
+  name: string;
+  image: string;
+  location: string;
+  headline: string;
+  priceText: string;
+  subtitle: string;
+  description: string;
+  pricePerPlot: string;
+  plotSize?: string;
+  type: string;
+  keyFeatures: Feature[];
+  whyChoose: Feature[];
+  gallery?: string[];
+  features?: string[];
+}
+
+const estateData: Record<string, DetailedEstate> = {
   "itura": {
     name: "Itura Estate",
     image: ituraImg,
@@ -115,7 +138,7 @@ const estateData: Record<string, any> = {
   },
   "irorun": {
     name: "Irorun Estate",
-    image: irorунImg,
+    image: irorunImg,
     location: "Agbowa, Ikorodu, Lagos",
     headline: "Affordable Luxury at Irorun Estate",
     priceText: "Starting at ₦2.2M (500sqm)",
@@ -344,10 +367,10 @@ const EstateDetails = () => {
       <Link to="/homes">
         <Button
           variant="ghost"
-          className="fixed top-6 left-6 z-50 bg-background/90 backdrop-blur-sm hover:bg-background text-foreground shadow-md"
+          className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 bg-background/90 backdrop-blur-sm hover:bg-background text-foreground shadow-md px-3 sm:px-4"
         >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Estates
+          <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
+          <span className="text-xs sm:text-sm">Back to Estates</span>
         </Button>
       </Link>
 
@@ -369,7 +392,7 @@ const EstateDetails = () => {
               {estate.type === "flat" ? "Off-Plan Flat" : estate.type === "farm" ? "Farm Estate" : "Residential Estate"}
             </Badge>
 
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
               {estate.headline} {estate.priceText ? `– ${estate.priceText}` : ''}
             </h1>
 
@@ -404,11 +427,11 @@ const EstateDetails = () => {
         {/* Floating Chat Button */}
         <Button
           onClick={handleChatWithSales}
-          className="fixed bottom-8 right-8 z-50 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg px-6 py-6"
+          className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg px-4 py-4 sm:px-6 sm:py-6 h-auto"
           size="lg"
         >
-          <MessageCircle className="w-5 h-5 mr-2" />
-          Chat with Sales
+          <MessageCircle className="w-5 h-5 sm:mr-2" />
+          <span className="hidden sm:inline">Chat with Sales</span>
         </Button>
       </section>
 
@@ -416,7 +439,7 @@ const EstateDetails = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {estate.keyFeatures.map((feature: any, index: number) => (
+            {estate.keyFeatures.map((feature: Feature, index: number) => (
               <Card key={index} className="glass-panel text-center">
                 <CardContent className="pt-6">
                   <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
@@ -466,7 +489,7 @@ const EstateDetails = () => {
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {estate.whyChoose.map((item: any, index: number) => (
+            {estate.whyChoose.map((item: Feature, index: number) => (
               <Card key={index} className="glass-panel text-center hover-lift">
                 <CardContent className="pt-6">
                   <div className="w-12 h-12 mx-auto mb-3 bg-primary/10 rounded-full flex items-center justify-center">

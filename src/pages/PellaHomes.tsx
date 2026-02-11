@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -5,7 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin, Home, Building2, Wheat, Key } from "lucide-react";
+import { MapPin, Home, Building2, Wheat, Key, ArrowRight } from "lucide-react";
 import ituraImg from "@/assets/estates/itura.jpg";
 import halleluyahImg from "@/assets/estates/halleluyah.jpg";
 import kingsFlavenImg from "@/assets/estates/kings-flaven.jpg";
@@ -138,7 +139,17 @@ const getCategoryLabel = (category: string) => {
   }
 };
 
-const EstateCard = ({ estate, index }: { estate: any; index: number }) => {
+interface Estate {
+  id: string;
+  name: string;
+  image?: string;
+  location?: string;
+  description: string;
+  pricePerPlot?: string;
+  category: string;
+}
+
+const EstateCard = ({ estate, index }: { estate: Estate; index: number }) => {
   const Icon = getCategoryIcon(estate.category);
 
   return (
@@ -201,6 +212,32 @@ const EstateCard = ({ estate, index }: { estate: any; index: number }) => {
 };
 
 const PellaHomes = () => {
+  const [activeTab, setActiveTab] = useState("land");
+
+  const bannerCategories = [
+    {
+      id: "land",
+      title: "Estates",
+      image: goldenCitadelImg,
+      label: "Premium Lands",
+      description: "Secure 100% dry land with instant allocation in choice locations."
+    },
+    {
+      id: "farmlands",
+      title: "Farmlands",
+      image: prideFarmImg,
+      label: "Agro Investment",
+      description: "Earn 18% ROI while your land appreciates in value."
+    },
+    {
+      id: "off-plan",
+      title: "Houses",
+      image: pellaCourtImg,
+      label: "Modern Living",
+      description: "Luxury off-plan apartments with 24/7 power and premium facilities."
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -208,17 +245,54 @@ const PellaHomes = () => {
       <section className="pt-32 pb-24">
         <div className="container mx-auto px-6">
           <ScrollReveal variant="fadeUp">
-            <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-serif font-bold text-gradient-blue mb-4">
-                Pella Homes and Properties Ltd
+            <div className="text-center mb-10 md:mb-16 px-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-gradient-blue mb-4">
+                Pella Properties
               </h1>
-              <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-                Discover premium estates and investment opportunities across choice locations
+              <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto">
+                Discover premium estates, agricultural investments, and modern homes across Nigeria.
               </p>
             </div>
           </ScrollReveal>
 
-          <Tabs defaultValue="land" className="w-full">
+          {/* New Visual Banner Section */}
+          <ScrollReveal variant="fadeUp" delay={0.2}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 px-4">
+              {bannerCategories.map((cat, idx) => (
+                <div
+                  key={cat.id}
+                  onClick={() => setActiveTab(cat.id)}
+                  className={`relative h-[300px] sm:h-[400px] md:h-[450px] rounded-3xl overflow-hidden group cursor-pointer shadow-2xl transition-all duration-500 ${activeTab === cat.id ? "ring-4 ring-primary ring-offset-4 ring-offset-background scale-[1.02]" : "hover:scale-[1.01]"
+                    }`}
+                >
+                  <img
+                    src={cat.image}
+                    alt={cat.title}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500 ${activeTab === cat.id ? "opacity-90" : "opacity-70 group-hover:opacity-80"
+                    }`} />
+
+                  <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end text-white">
+                    <Badge className="w-fit mb-3 sm:mb-4 bg-primary text-white border-none px-3 py-1 text-xs">
+                      {cat.label}
+                    </Badge>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-2 group-hover:translate-x-2 transition-transform duration-300">
+                      {cat.title}
+                    </h2>
+                    <p className="text-sm sm:text-base text-white/80 line-clamp-2 md:line-clamp-none mb-4 sm:mb-6 group-hover:translate-x-2 transition-transform duration-300 delay-75">
+                      {cat.description}
+                    </p>
+                    <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-primary-foreground group-hover:translate-x-2 transition-transform duration-300 delay-150">
+                      Explore {cat.title} <ArrowRight className="w-5 h-5" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-12">
               {categories.map((cat) => {
                 const Icon = cat.icon;

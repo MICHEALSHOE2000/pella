@@ -24,7 +24,7 @@ const WealthTitans = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <ScrollReveal variant="fadeDown">
-              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold mb-6">
                 <span className="text-gradient-blue">Wealth Titans</span>
               </h1>
             </ScrollReveal>

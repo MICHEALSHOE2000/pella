@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Check, ArrowRight, Banknote } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
+import landBankingHero from "@/assets/hero-estate.jpg";
 
 const LandBanking = () => {
     const [searchParams] = useSearchParams();
@@ -26,7 +27,7 @@ const LandBanking = () => {
         { capital: "₦500,000", m6: "₦562,500", m12: "₦650,000", m18: "₦725,000", m36: "₦1,150,000" },
         { capital: "₦1,000,000", m6: "₦1,125,000", m12: "₦1,300,000", m18: "₦1,450,000", m36: "₦2,300,000" },
         { capital: "₦2,000,000", m6: "₦2,250,000", m12: "₦2,600,000", m18: "₦2,900,000", m36: "₦4,600,000" },
-        { capital: "₦5,000,000", m6: "₦5,625,000", m12: "₦6,500,000", m18: "₦7,250,000", m36: "₦11,500,000" },
+        { capital: "₦5,000,000", m6: "₦5,625,000", m12: "₦6,500,000", m18: "₦725,000", m36: "₦11,500,000" },
     ];
 
     return (
@@ -34,9 +35,11 @@ const LandBanking = () => {
             <Navigation />
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden bg-slate-900 text-white">
-                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
-                <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20"></div>
+            <section className="relative pt-32 pb-20 overflow-hidden bg-slate-900 text-white min-h-[400px] flex items-center">
+                <div className="absolute inset-0 z-0">
+                    <img src={landBankingHero} alt="Land Banking" className="w-full h-full object-cover opacity-30" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+                </div>
                 <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
                     <ScrollReveal variant="fadeDown">
                         <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold mb-6">
@@ -176,7 +179,7 @@ const LandBanking = () => {
                                                 <CardTitle className="text-green-800 text-xl uppercase tracking-wide">1 Plot Package</CardTitle>
                                             </CardHeader>
                                             <CardContent className="text-center pb-8">
-                                                <div className="text-5xl font-bold text-green-700 mb-2">₦600K</div>
+                                                <div className="text-4xl sm:text-5xl font-bold text-green-700 mb-2">₦600K</div>
                                                 <p className="text-green-600 text-sm">Outright Payment</p>
                                             </CardContent>
                                         </Card>
@@ -186,7 +189,7 @@ const LandBanking = () => {
                                                 <CardTitle className="text-emerald-800 text-xl uppercase tracking-wide">1 Acre Package (6 Plots)</CardTitle>
                                             </CardHeader>
                                             <CardContent className="text-center pb-8">
-                                                <div className="text-5xl font-bold text-emerald-700 mb-2">₦3.5M</div>
+                                                <div className="text-4xl sm:text-5xl font-bold text-emerald-700 mb-2">₦3.5M</div>
                                                 <p className="text-emerald-600 text-sm">Bulk Purchase Discount</p>
                                             </CardContent>
                                         </Card>

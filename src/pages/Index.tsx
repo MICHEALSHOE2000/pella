@@ -7,10 +7,13 @@ import AboutSection from "@/components/AboutSection";
 import { Home, TrendingUp, Handshake, Globe } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-estate.jpg";
+import estateImg from "@/assets/estates/itura.jpg";
+import farmImg from "@/assets/estates/pride-farm.jpg";
+import titanImg from "@/assets/estates/halleluyah.jpg";
 
 const Index = () => {
   const navigate = useNavigate();
-  
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -30,7 +33,7 @@ const Index = () => {
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-6 text-center">
           <ScrollReveal variant="fadeDown" duration={0.8}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight">
               <span className="text-gradient-blue">Empowering Wealth</span>
               <br />
               <span className="text-foreground">Through Real Estate &</span>
@@ -93,9 +96,10 @@ const Index = () => {
             <ScrollReveal variant="fadeUp" delay={0}>
               <DivisionCard
                 icon={Home}
-                title="Pella Homes and Properties Ltd"
-                description="High-end residential estates with modern amenities and excellent locations"
+                title="Pella Homes & Properties"
+                description="High-end residential estates with modern amenities and choice locations"
                 link="/homes"
+                image={estateImg}
               />
             </ScrollReveal>
             <ScrollReveal variant="fadeUp" delay={0.1}>
@@ -104,6 +108,7 @@ const Index = () => {
                 title="Wealth Titans"
                 description="Lucrative referral program for experienced marketers to earn commissions"
                 link="/wealth-titans"
+                image={titanImg}
               />
             </ScrollReveal>
             <ScrollReveal variant="fadeUp" delay={0.2}>
@@ -112,22 +117,34 @@ const Index = () => {
                 title="Cooperative"
                 description="Collective investment opportunities with shared benefits and guaranteed returns"
                 link="/cooperative"
+                image={farmImg}
               />
             </ScrollReveal>
             <ScrollReveal variant="fadeUp" delay={0.3}>
-              <a href="https://pellaglobalservicesltd.ng/" target="_blank" rel="noopener noreferrer">
-                <div className="group glass-panel p-8 rounded-2xl hover-lift cursor-pointer h-full">
-                  <div className="mb-6 flex justify-center">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-pella-maroon flex items-center justify-center blue-glow group-hover:scale-110 transition-transform duration-300">
-                      <Globe className="w-10 h-10 text-primary-foreground" />
+              <a href="https://pellaglobalservicesltd.ng/" target="_blank" rel="noopener noreferrer" className="h-full">
+                <div className="group relative rounded-2xl overflow-hidden hover-lift cursor-pointer h-full transition-all duration-500 min-h-[320px] shadow-xl">
+                  <img
+                    src={heroImage}
+                    alt="Pella Global"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-pella-maroon via-black/40 to-transparent group-hover:opacity-80 transition-opacity" />
+
+                  <div className="relative z-10 h-full flex flex-col p-8 justify-end text-white">
+                    <div className="mb-6 flex justify-center w-fit">
+                      <div className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110 bg-primary/20 backdrop-blur-md border border-white/20">
+                        <Globe className="w-8 h-8 text-white" />
+                      </div>
                     </div>
+
+                    <h3 className="text-2xl font-serif font-bold mb-4 text-white">
+                      Pella Global
+                    </h3>
+
+                    <p className="text-white/80 leading-relaxed">
+                      Global services and international partnerships for worldwide opportunities
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-primary mb-4 text-center">
-                    Pella Global
-                  </h3>
-                  <p className="text-foreground/70 text-center leading-relaxed">
-                    Global services and international partnerships for worldwide opportunities
-                  </p>
                 </div>
               </a>
             </ScrollReveal>
