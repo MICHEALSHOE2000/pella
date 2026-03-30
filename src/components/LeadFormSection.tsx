@@ -15,7 +15,8 @@ interface LeadFormSectionProps {
   mode?: "default" | "investment" | "court-royale";
 }
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojpddyj";
+const FORMSPREE_INVESTMENT_ENDPOINT = "https://formspree.io/f/mojpddyj";
+const FORMSPREE_COURT_ENDPOINT = "https://formspree.io/f/mreoqkgq";
 
 const LeadFormSection = ({
   estateName,
@@ -83,10 +84,8 @@ const LeadFormSection = ({
       return;
     }
 
-    if (mode === "default" || mode === "court-royale") {
-      const message = mode === "court-royale"
-        ? `Hello, I'm interested in ${estateName}.\n\nFull Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nBased In: ${baseLocation}\nWhat I Want: ${wantOption}\nPlot Interest: ${plotInterest}\nBudget: ${budget}\nTimeline: ${timeline}\nNote: ${note || "N/A"}`
-        : `Hello, I'm interested in ${estateName}.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nNote: ${note || "N/A"}`;
+    if (mode === "default") {
+      const message = `Hello, I'm interested in ${estateName}.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nNote: ${note || "N/A"}`;
 
       window.open(`https://wa.me/2349055777795?text=${encodeURIComponent(message)}`, "_blank");
       toast({
@@ -99,21 +98,35 @@ const LeadFormSection = ({
     try {
       setSubmitting(true);
 
-      const payload = {
-        estateName,
-        formType: "Pride Farms Investment Lead",
-        fullName: name,
-        phoneNumber: phone,
-        emailAddress: email,
-        currentLocation,
-        investmentInterest: interest,
-        budget,
-        timeline,
-        contactPreference,
-        additionalNote: note || "N/A",
-      };
+      const payload = mode === "court-royale"
+        ? {
+            estateName,
+            formType: "Court Royale Lead",
+            fullName: name,
+            phoneNumber: phone,
+            emailAddress: email,
+            basedIn: baseLocation,
+            objective: wantOption,
+            plotInterest,
+            budget,
+            timeline,
+            additionalNote: note || "N/A",
+          }
+        : {
+            estateName,
+            formType: "Pride Farms Investment Lead",
+            fullName: name,
+            phoneNumber: phone,
+            emailAddress: email,
+            currentLocation,
+            investmentInterest: interest,
+            budget,
+            timeline,
+            contactPreference,
+            additionalNote: note || "N/A",
+          };
 
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch(mode === "court-royale" ? FORMSPREE_COURT_ENDPOINT : FORMSPREE_INVESTMENT_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,7 +141,7 @@ const LeadFormSection = ({
 
       toast({
         title: "Submission received",
-        description: "Thank you. Our investment advisor will contact you shortly.",
+        description: mode === "court-royale" ? "Thank you. Our sales advisor will contact you shortly." : "Thank you. Our investment advisor will contact you shortly.",
       });
       resetForm();
     } catch {
@@ -157,8 +170,8 @@ const LeadFormSection = ({
               </p>
               <form
                 onSubmit={handleSubmit}
-                action={isInvestment ? FORMSPREE_ENDPOINT : undefined}
-                method={isInvestment ? "POST" : undefined}
+                action={isInvestment || isCourtRoyale ? (isCourtRoyale ? FORMSPREE_COURT_ENDPOINT : FORMSPREE_INVESTMENT_ENDPOINT) : undefined}
+                method={isInvestment || isCourtRoyale ? "POST" : undefined}
                 className="grid grid-cols-1 md:grid-cols-2 gap-5"
               >
                 <div className="space-y-2">
