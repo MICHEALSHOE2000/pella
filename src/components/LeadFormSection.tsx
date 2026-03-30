@@ -15,6 +15,8 @@ interface LeadFormSectionProps {
   mode?: "default" | "investment";
 }
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojpddyj";
+
 const LeadFormSection = ({
   estateName,
   title,
@@ -25,6 +27,7 @@ const LeadFormSection = ({
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const [currentLocation, setCurrentLocation] = useState("");
   const [interest, setInterest] = useState("");
@@ -32,7 +35,19 @@ const LeadFormSection = ({
   const [timeline, setTimeline] = useState("");
   const [contactPreference, setContactPreference] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const resetForm = () => {
+    setName("");
+    setPhone("");
+    setEmail("");
+    setNote("");
+    setCurrentLocation("");
+    setInterest("");
+    setBudget("");
+    setTimeline("");
+    setContactPreference("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name || !phone || !email) {
@@ -53,16 +68,60 @@ const LeadFormSection = ({
       return;
     }
 
-    const message = mode === "investment"
-      ? `Hello, I'm interested in ${estateName}.\n\nFull Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nCurrent Location: ${currentLocation}\nInvestment Interest: ${interest}\nBudget: ${budget}\nTimeline: ${timeline}\nContact Preference: ${contactPreference}\nAdditional Note: ${note || "N/A"}`
-      : `Hello, I'm interested in ${estateName}.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nNote: ${note || "N/A"}`;
+    if (mode === "default") {
+      const message = `Hello, I'm interested in ${estateName}.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nNote: ${note || "N/A"}`;
+      window.open(`https://wa.me/2349055777795?text=${encodeURIComponent(message)}`, "_blank");
+      toast({
+        title: "Redirecting to WhatsApp",
+        description: "Please complete your enquiry on WhatsApp.",
+      });
+      return;
+    }
 
-    window.open(`https://wa.me/2349055777795?text=${encodeURIComponent(message)}`, "_blank");
+    try {
+      setSubmitting(true);
 
-    toast({
-      title: "Redirecting to WhatsApp",
-      description: "Please complete your enquiry on WhatsApp.",
-    });
+      const payload = {
+        estateName,
+        formType: "Pride Farms Investment Lead",
+        fullName: name,
+        phoneNumber: phone,
+        emailAddress: email,
+        currentLocation,
+        investmentInterest: interest,
+        budget,
+        timeline,
+        contactPreference,
+        additionalNote: note || "N/A",
+      };
+
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
+
+      toast({
+        title: "Submission received",
+        description: "Thank you. Our investment advisor will contact you shortly.",
+      });
+      resetForm();
+    } catch {
+      toast({
+        title: "Submission failed",
+        description: "Please try again in a moment.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -75,18 +134,23 @@ const LeadFormSection = ({
               <p className="text-foreground/70 mb-8">
                 {description || `Speak with our sales team about pricing, payment plans, and available units for ${estateName}.`}
               </p>
-              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <form
+                onSubmit={handleSubmit}
+                action={mode === "investment" ? FORMSPREE_ENDPOINT : undefined}
+                method={mode === "investment" ? "POST" : undefined}
+                className="grid grid-cols-1 md:grid-cols-2 gap-5"
+              >
                 <div className="space-y-2">
                   <Label htmlFor="lead-name">Full Name</Label>
-                  <Input id="lead-name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your full name" required />
+                  <Input id="lead-name" name="fullName" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your full name" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lead-phone">Phone Number (WhatsApp Preferred)</Label>
-                  <Input id="lead-phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="08012345678" required />
+                  <Input id="lead-phone" name="phoneNumber" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="08012345678" required />
                 </div>
                 <div className="space-y-2 md:col-span-2">
                   <Label htmlFor="lead-email">Email Address</Label>
-                  <Input id="lead-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
+                  <Input id="lead-email" name="emailAddress" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
                 </div>
 
                 {mode === "investment" && (
@@ -161,14 +225,16 @@ const LeadFormSection = ({
 
                 <div className="space-y-2 md:col-span-2">
                   <Label htmlFor="lead-note">Message (Optional)</Label>
-                  <Textarea id="lead-note" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Tell us your preferred plan or budget" />
+                  <Textarea id="lead-note" name="additionalNote" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Tell us your preferred plan or budget" />
                 </div>
                 <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button type="submit" disabled={submitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     <MessageCircle className="w-4 h-4 mr-2" />
-                    Get Full Investment Details
+                    {submitting ? "Submitting..." : "Submit Enquiry"}
                   </Button>
-                  <Button type="button" variant="outline" className="w-full" onClick={() => window.open("https://wa.me/2349055777795", "_blank")}>Chat on WhatsApp</Button>
+                  {mode === "default" && (
+                    <Button type="button" variant="outline" className="w-full" onClick={() => window.open("https://wa.me/2349055777795", "_blank")}>Chat on WhatsApp</Button>
+                  )}
                 </div>
               </form>
             </CardContent>
