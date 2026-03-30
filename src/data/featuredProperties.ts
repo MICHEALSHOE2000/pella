@@ -37,6 +37,7 @@ export interface FeaturedProperty {
   positioningStatement?: string;
   benefits?: string[];
   leadFormTitle?: string;
+  plotOptions?: string[];
 }
 
 export const featuredProperties: Record<string, FeaturedProperty> = {
@@ -126,21 +127,30 @@ export const featuredProperties: Record<string, FeaturedProperty> = {
     priceText: "Starting at ₦3,000,000 (600sqm)",
     pricePerPlot: "₦3,000,000",
     plotSize: "600sqm",
-    headline: "Court Royale I: Build in a Fast-Growing Axis",
-    subtitle: "A smart land-banking location with easy access to major Ogun-Lagos connectors.",
-    description: "Court Royale I combines affordability, road access, and strong appreciation potential for homeowners and investors.",
+    headline: "Own Land Near Lagos – Secure Your Future Today",
+    subtitle: "Court Royale Estates offer affordable plots in fast-growing locations close to Lagos, making them ideal for home building, land banking, or future resale.",
+    description: "Court Royale I gives you a strategic and affordable entry into land ownership close to Lagos with strong potential for future value growth.",
     keyFeatures: [
-      { icon: Home, title: "Planned Estate Layout", description: "Residential-focused parceling" },
-      { icon: Shield, title: "Secured Environment", description: "Perimeter and access control plan" },
-      { icon: MapPin, title: "Strategic Location", description: "Close to major commuting routes" },
-      { icon: Calendar, title: "Flexible Payment", description: "Structured payment options" },
+      { icon: MapPin, title: "Strategic location near Lagos", description: "Close to key commuting routes" },
+      { icon: DollarSign, title: "Affordable entry", description: "Accessible pricing for new buyers" },
+      { icon: Home, title: "Builder & investor friendly", description: "Great for homes and land banking" },
+      { icon: Calendar, title: "Flexible ownership", description: "Options for different buyer goals" },
     ],
     whyChoose: [
-      { icon: DollarSign, title: "Growth Potential", description: "Emerging neighborhood upside" },
-      { icon: Home, title: "Residential Appeal", description: "Suitable for home development" },
-      { icon: Shield, title: "Documented Purchase", description: "Clear title processing" },
-      { icon: MapPin, title: "Access to Amenities", description: "Near established communities" },
+      { icon: DollarSign, title: "Future appreciation", description: "High long-term upside" },
+      { icon: Home, title: "Home builder ready", description: "Ideal for residential use" },
+      { icon: Shield, title: "Verified documentation", description: "Secure buying process" },
+      { icon: MapPin, title: "Close to Lagos", description: "Strategic growth corridor" },
     ],
+    benefits: [
+      "Strategic location near Lagos",
+      "Affordable entry into real estate ownership",
+      "Suitable for home builders and investors",
+      "Strong future appreciation potential",
+      "Flexible ownership opportunities",
+    ],
+    plotOptions: ["250sqm", "500sqm", "Multiple plots"],
+    leadFormTitle: "Tell Us What You're Looking For",
   },
   "court-royale-3": {
     id: "court-royale-3",
@@ -151,20 +161,29 @@ export const featuredProperties: Record<string, FeaturedProperty> = {
     priceText: "Starting at ₦3,500,000 (600sqm)",
     pricePerPlot: "₦3,500,000",
     plotSize: "600sqm",
-    headline: "Court Royale III: Premium Value in Ofada",
-    subtitle: "Balanced for residential use and strategic investment in a developing corridor.",
-    description: "Court Royale III delivers a well-positioned estate option for buyers looking for accessibility, pricing value, and appreciation prospects.",
+    headline: "Own Land Near Lagos – Secure Your Future Today",
+    subtitle: "Court Royale Estates offer affordable plots in fast-growing locations close to Lagos, making them ideal for home building, land banking, or future resale.",
+    description: "Court Royale III offers a strategic path to land ownership with affordable pricing and strong long-term resale or development potential.",
     keyFeatures: [
-      { icon: MapPin, title: "Ofada Growth Node", description: "Located in an expanding residential axis" },
-      { icon: Home, title: "Estate Infrastructure Plan", description: "Road and utility provision roadmap" },
-      { icon: Shield, title: "Security Focus", description: "Controlled entry and estate safety" },
-      { icon: DollarSign, title: "Competitive Entry Price", description: "Accessible pricing for 600sqm" },
+      { icon: MapPin, title: "Strategic location near Lagos", description: "In a fast-growing corridor" },
+      { icon: DollarSign, title: "Affordable entry", description: "Own land with budget-friendly options" },
+      { icon: Home, title: "Builder & investor friendly", description: "Ideal for personal and investment goals" },
+      { icon: Calendar, title: "Flexible ownership", description: "Buy based on your timeline and needs" },
     ],
     whyChoose: [
-      { icon: Calendar, title: "Flexible Payment Plans", description: "Buyer-friendly payment structure" },
-      { icon: FileCheck, title: "Proper Documentation", description: "Clear legal process" },
-      { icon: MapPin, title: "Connectivity", description: "Convenient access to Ogun-Lagos routes" },
-      { icon: DollarSign, title: "Investment Confidence", description: "Aligned with long-term market trend" },
+      { icon: DollarSign, title: "Future appreciation", description: "Strong long-term value growth" },
+      { icon: FileCheck, title: "Clear documentation", description: "Secure and verified process" },
+      { icon: MapPin, title: "Close to Lagos", description: "Ideal growth position" },
+      { icon: Home, title: "Flexible ownership goals", description: "Build, bank, or resell" },
     ],
+    benefits: [
+      "Strategic location near Lagos",
+      "Affordable entry into real estate ownership",
+      "Suitable for home builders and investors",
+      "Strong future appreciation potential",
+      "Flexible ownership opportunities",
+    ],
+    plotOptions: ["250sqm", "500sqm", "Multiple plots"],
+    leadFormTitle: "Tell Us What You're Looking For",
   },
 };

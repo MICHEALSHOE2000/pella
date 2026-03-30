@@ -25,6 +25,7 @@ const PropertyLandingPage = () => {
   }
 
   const isPrideFarms = property.id === "pride-farms";
+  const isCourtRoyale = property.id === "court-royale-1" || property.id === "court-royale-3";
   const typeLabel = property.category === "off-plan" ? "Off-Plan" : property.category === "farmlands" ? "Farm Estate" : "Residential Estate";
 
   const contactSales = (message = `I'm interested in ${property.name}`) => {
@@ -57,13 +58,13 @@ const PropertyLandingPage = () => {
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">{property.subtitle}</p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => contactSales(`Speak with an investment advisor for ${property.name}`)}>
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => contactSales(`Book inspection for ${property.name}`)}>
                 <Phone className="w-4 h-4 mr-2" />
-                Speak With an Investment Advisor
+                Book Inspection
               </Button>
-              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white" onClick={() => contactSales(`Chat on WhatsApp about ${property.name}`)}>
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white" onClick={() => contactSales(`Get price details for ${property.name}`)}>
                 <MessageCircle className="w-4 h-4 mr-2" />
-                Chat on WhatsApp
+                Get Price Details
               </Button>
             </div>
           </div>
@@ -95,7 +96,7 @@ const PropertyLandingPage = () => {
             <div className="max-w-4xl mx-auto mb-10">
               <Card className="glass-panel">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-4">ROI & Value</h3>
+                  <h3 className="text-2xl font-bold mb-4">Why Invest</h3>
                   <ul className="space-y-3">
                     {property.roiPoints.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-foreground/80">
@@ -155,6 +156,22 @@ const PropertyLandingPage = () => {
               </CardContent>
             </Card>
           </div>
+
+          {property.plotOptions && (
+            <div className="max-w-4xl mx-auto mt-10">
+              <Card className="glass-panel">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold mb-4">Plot Options</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {property.plotOptions.map((option) => (
+                      <div key={option} className="rounded-lg border border-border p-4 text-center font-semibold">{option}</div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
         </div>
       </section>
 
@@ -162,7 +179,7 @@ const PropertyLandingPage = () => {
         estateName={property.name}
         title={property.leadFormTitle}
         description="Fill in your details and our investment team will guide you on the best entry plan."
-        mode={isPrideFarms ? "investment" : "default"}
+        mode={isPrideFarms ? "investment" : isCourtRoyale ? "court-royale" : "default"}
       />
 
       <section className="py-12 bg-background border-t border-border">
@@ -171,7 +188,7 @@ const PropertyLandingPage = () => {
             <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4">Secure Your Plot</h3>
             <p className="text-foreground/70 mb-6">Ready to move forward? Get clarity on pricing, returns, and allocation today.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => contactSales(`Get full investment details for ${property.name}`)}>Get Full Investment Details</Button>
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => contactSales(`Book inspection for ${property.name}`)}>Book Inspection</Button>
               <Button variant="outline" onClick={() => contactSales(`Chat on WhatsApp about ${property.name}`)}>Chat on WhatsApp</Button>
             </div>
           </div>

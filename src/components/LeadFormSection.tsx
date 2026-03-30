@@ -12,7 +12,7 @@ interface LeadFormSectionProps {
   estateName: string;
   title?: string;
   description?: string;
-  mode?: "default" | "investment";
+  mode?: "default" | "investment" | "court-royale";
 }
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojpddyj";
@@ -34,6 +34,9 @@ const LeadFormSection = ({
   const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
   const [contactPreference, setContactPreference] = useState("");
+  const [baseLocation, setBaseLocation] = useState("");
+  const [wantOption, setWantOption] = useState("");
+  const [plotInterest, setPlotInterest] = useState("");
 
   const resetForm = () => {
     setName("");
@@ -45,6 +48,9 @@ const LeadFormSection = ({
     setBudget("");
     setTimeline("");
     setContactPreference("");
+    setBaseLocation("");
+    setWantOption("");
+    setPlotInterest("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -68,8 +74,20 @@ const LeadFormSection = ({
       return;
     }
 
-    if (mode === "default") {
-      const message = `Hello, I'm interested in ${estateName}.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nNote: ${note || "N/A"}`;
+    if (mode === "court-royale" && (!baseLocation || !wantOption || !plotInterest || !budget || !timeline)) {
+      toast({
+        title: "Please complete your preferences",
+        description: "All estate preference fields are required.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (mode === "default" || mode === "court-royale") {
+      const message = mode === "court-royale"
+        ? `Hello, I'm interested in ${estateName}.\n\nFull Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nBased In: ${baseLocation}\nWhat I Want: ${wantOption}\nPlot Interest: ${plotInterest}\nBudget: ${budget}\nTimeline: ${timeline}\nNote: ${note || "N/A"}`
+        : `Hello, I'm interested in ${estateName}.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nNote: ${note || "N/A"}`;
+
       window.open(`https://wa.me/2349055777795?text=${encodeURIComponent(message)}`, "_blank");
       toast({
         title: "Redirecting to WhatsApp",
@@ -124,6 +142,9 @@ const LeadFormSection = ({
     }
   };
 
+  const isInvestment = mode === "investment";
+  const isCourtRoyale = mode === "court-royale";
+
   return (
     <section id="lead-form" className="py-16 bg-muted/30">
       <div className="container mx-auto px-6">
@@ -136,8 +157,8 @@ const LeadFormSection = ({
               </p>
               <form
                 onSubmit={handleSubmit}
-                action={mode === "investment" ? FORMSPREE_ENDPOINT : undefined}
-                method={mode === "investment" ? "POST" : undefined}
+                action={isInvestment ? FORMSPREE_ENDPOINT : undefined}
+                method={isInvestment ? "POST" : undefined}
                 className="grid grid-cols-1 md:grid-cols-2 gap-5"
               >
                 <div className="space-y-2">
@@ -153,14 +174,12 @@ const LeadFormSection = ({
                   <Input id="lead-email" name="emailAddress" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
                 </div>
 
-                {mode === "investment" && (
+                {isInvestment && (
                   <>
                     <div className="space-y-2">
                       <Label>Current Location (Nigeria / Abroad)</Label>
                       <Select value={currentLocation} onValueChange={setCurrentLocation}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select location" />
-                        </SelectTrigger>
+                        <SelectTrigger><SelectValue placeholder="Select location" /></SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Nigeria">Nigeria</SelectItem>
                           <SelectItem value="Abroad">Abroad</SelectItem>
@@ -170,9 +189,7 @@ const LeadFormSection = ({
                     <div className="space-y-2">
                       <Label>Investment Interest</Label>
                       <Select value={interest} onValueChange={setInterest}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Choose one" />
-                        </SelectTrigger>
+                        <SelectTrigger><SelectValue placeholder="Choose one" /></SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Passive income">Passive income</SelectItem>
                           <SelectItem value="Long-term land investment">Long-term land investment</SelectItem>
@@ -184,9 +201,7 @@ const LeadFormSection = ({
                     <div className="space-y-2">
                       <Label>Budget</Label>
                       <Select value={budget} onValueChange={setBudget}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select budget" />
-                        </SelectTrigger>
+                        <SelectTrigger><SelectValue placeholder="Select budget" /></SelectTrigger>
                         <SelectContent>
                           <SelectItem value="₦500K – ₦1M">₦500K – ₦1M</SelectItem>
                           <SelectItem value="₦1M – ₦3M">₦1M – ₦3M</SelectItem>
@@ -197,9 +212,7 @@ const LeadFormSection = ({
                     <div className="space-y-2">
                       <Label>Timeline</Label>
                       <Select value={timeline} onValueChange={setTimeline}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select timeline" />
-                        </SelectTrigger>
+                        <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Immediately">Immediately</SelectItem>
                           <SelectItem value="Within 1 month">Within 1 month</SelectItem>
@@ -210,13 +223,72 @@ const LeadFormSection = ({
                     <div className="space-y-2 md:col-span-2">
                       <Label>Contact Preference</Label>
                       <Select value={contactPreference} onValueChange={setContactPreference}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Choose preferred contact" />
-                        </SelectTrigger>
+                        <SelectTrigger><SelectValue placeholder="Choose preferred contact" /></SelectTrigger>
                         <SelectContent>
                           <SelectItem value="WhatsApp">WhatsApp</SelectItem>
                           <SelectItem value="Phone Call">Phone Call</SelectItem>
                           <SelectItem value="Email">Email</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </>
+                )}
+
+                {isCourtRoyale && (
+                  <>
+                    <div className="space-y-2">
+                      <Label>Where are you based?</Label>
+                      <Select value={baseLocation} onValueChange={setBaseLocation}>
+                        <SelectTrigger><SelectValue placeholder="Select location" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Lagos">Lagos</SelectItem>
+                          <SelectItem value="Other State">Other State</SelectItem>
+                          <SelectItem value="Abroad">Abroad</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label>What do you want?</Label>
+                      <Select value={wantOption} onValueChange={setWantOption}>
+                        <SelectTrigger><SelectValue placeholder="Select an option" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Buy and build immediately">Buy and build immediately</SelectItem>
+                          <SelectItem value="Buy and hold (land banking)">Buy and hold (land banking)</SelectItem>
+                          <SelectItem value="Buy and resell later">Buy and resell later</SelectItem>
+                          <SelectItem value="Not sure yet">Not sure yet</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Plot interest</Label>
+                      <Select value={plotInterest} onValueChange={setPlotInterest}>
+                        <SelectTrigger><SelectValue placeholder="Choose plot size" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="250sqm">250sqm</SelectItem>
+                          <SelectItem value="500sqm">500sqm</SelectItem>
+                          <SelectItem value="Multiple plots">Multiple plots</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Budget</Label>
+                      <Select value={budget} onValueChange={setBudget}>
+                        <SelectTrigger><SelectValue placeholder="Select budget" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="₦800K – ₦2M">₦800K – ₦2M</SelectItem>
+                          <SelectItem value="₦2M – ₦5M">₦2M – ₦5M</SelectItem>
+                          <SelectItem value="₦5M+">₦5M+</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2 md:col-span-2">
+                      <Label>Timeline</Label>
+                      <Select value={timeline} onValueChange={setTimeline}>
+                        <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Ready now">Ready now</SelectItem>
+                          <SelectItem value="Within 1 month">Within 1 month</SelectItem>
+                          <SelectItem value="Just exploring">Just exploring</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -230,9 +302,9 @@ const LeadFormSection = ({
                 <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Button type="submit" disabled={submitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     <MessageCircle className="w-4 h-4 mr-2" />
-                    {submitting ? "Submitting..." : "Submit Enquiry"}
+                    {submitting ? "Submitting..." : isCourtRoyale ? "Get Price Details" : "Submit Enquiry"}
                   </Button>
-                  {mode === "default" && (
+                  {(mode === "default" || isCourtRoyale) && (
                     <Button type="button" variant="outline" className="w-full" onClick={() => window.open("https://wa.me/2349055777795", "_blank")}>Chat on WhatsApp</Button>
                   )}
                 </div>
