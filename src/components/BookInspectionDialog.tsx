@@ -14,14 +14,15 @@ import { toast } from "@/hooks/use-toast";
 const estates = [
   "Itura Estate",
   "Halleluyah Estates",
-  "Kings Flaven",
+  "King's Haven",
   "Irorun Estate",
   "Pella's Court",
-  "Court Royale 2",
+  "Court Royale I",
+  "Court Royale III",
   "Esperanza Ville Estate",
   "Vermon Estate 2",
   "Golden Citadel",
-  "Pride Farm Estate",
+  "Pride Farms",
   "Adopt a Farm Program",
 ];
 

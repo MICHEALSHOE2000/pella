@@ -12,6 +12,7 @@ import WealthTitans from "./pages/WealthTitans";
 import Cooperative from "./pages/Cooperative";
 import TargetSavings from "./pages/TargetSavings";
 import LandBanking from "./pages/LandBanking";
+import PropertyLandingPage from "./pages/PropertyLandingPage";
 import NotFound from "./pages/NotFound";
 import PageTransition from "./components/PageTransition";
 
@@ -37,6 +38,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/homes" element={<PageTransition><PellaHomes /></PageTransition>} />
         <Route path="/estates/:estateId" element={<PageTransition><EstateDetails /></PageTransition>} />
+        <Route path="/properties/:propertyId" element={<PageTransition><PropertyLandingPage /></PageTransition>} />
         <Route path="/wealth-titans" element={<PageTransition><WealthTitans /></PageTransition>} />
         <Route path="/cooperative" element={<PageTransition><Cooperative /></PageTransition>} />
         <Route path="/cooperative/target-savings" element={<PageTransition><TargetSavings /></PageTransition>} />

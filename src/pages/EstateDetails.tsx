@@ -25,7 +25,7 @@ import esperanzaImg from "@/assets/estates/esperanza.jpg";
 import vermon2Img from "@/assets/estates/vermon-2.jpg";
 import goldenCitadelImg from "@/assets/estates/golden-citadel.jpg";
 import prideFarmImg from "@/assets/estates/pride-farm.jpg";
-import kingsFlavenImg from "@/assets/estates/kings-flaven.jpg";
+import kingsHavenImg from "@/assets/estates/kings-flaven.jpg";
 
 // Pella Courts gallery images
 import pellaCourts1 from "@/assets/estates/pella-courts-1.jpg";
@@ -63,11 +63,11 @@ const estateData: Record<string, DetailedEstate> = {
     image: ituraImg,
     location: "Odogunyan, Ikorodu, Lagos",
     headline: "Own a Secure Plot at Itura Estate",
-    priceText: "Starting at ₦1.4M (600sqm)",
+    priceText: "Starting at ₦2.0M (500sqm)",
     subtitle: "Flexible 3, 6 & 12-Month Payment Plans. Dry Table Land. Instant Allocation",
     description: "Experience city life and good proximity to industries at Itura. Own a plot of our 100% dry land. Itura has untapped potential, natural beauty, investment incentives, diverse opportunities, and a secured community.",
-    pricePerPlot: "₦1,400,000",
-    plotSize: "600sqm",
+    pricePerPlot: "₦2,000,000",
+    plotSize: "500sqm",
     type: "estate",
     keyFeatures: [
       { icon: Shield, title: "Secure Fenced Estate", description: "Perimeter fencing for security" },
@@ -112,15 +112,15 @@ const estateData: Record<string, DetailedEstate> = {
       { icon: Shield, title: "Perimeter Fencing", description: "Fully secured" },
     ]
   },
-  "kings-flaven": {
-    name: "Kings Flaven",
-    image: kingsFlavenImg,
+  "kings-haven": {
+    name: "King's Haven",
+    image: kingsHavenImg,
     location: "Premium Location, Lagos",
-    headline: "Exclusive Living at Kings Flaven",
-    priceText: "Starting at ₦4.0M (700sqm)",
+    headline: "Exclusive Living at King's Haven",
+    priceText: "Starting at ₦7.5M (700sqm)",
     subtitle: "Premium features designed for discerning property owners seeking luxury",
     description: "Exclusive estate with premium features designed for discerning property owners seeking luxury and comfort.",
-    pricePerPlot: "₦4,000,000",
+    pricePerPlot: "₦7,500,000",
     plotSize: "700sqm",
     type: "estate",
     keyFeatures: [
@@ -285,28 +285,28 @@ const estateData: Record<string, DetailedEstate> = {
     ]
   },
   "pride-farm": {
-    name: "Pride Farm Estate",
+    name: "Pride Farms",
     image: prideFarmImg,
     location: "Owode, Ofada, Ogun State",
-    headline: "Your Land Works for You",
-    priceText: "Starting at ₦600,000 (600sqm)",
-    subtitle: "Earn 18% every 13 months for 5 years. By Year 5, earn up to 100% of your land cost back!",
-    description: "This is a future residential estate, but while the environment is developing, your land doesn't sit idle—it works for you. Pella Farms rents the land from you, you earn 18% every 13 months for 5 years. Your land continues to appreciate in value and you remain the legal owner. Located within the same neighbourhood as Redemption Camp, Shagamu Interchange, International Breweries, Nestlé Foods PLC, Olam Petroleum, and Ogun State House.",
-    pricePerPlot: "₦600,000",
-    plotSize: "600sqm (1 Plot) | 1 Acre: ₦3,500,000",
+    headline: "Own a Farm. Earn While You Sleep.",
+    priceText: "₦700,000 per plot | ₦4,100,000 per acre",
+    subtitle: "Invest in managed farmland at Pride Farms and earn 15% annual ROI while Pella Farms cultivates and manages your land for you.",
+    description: "Pride Farm Estate gives investors the unique opportunity to own farmland while earning steady yearly returns through professionally managed agricultural operations. When an investor purchases a plot, Pella Farms manages and cultivates the land on their behalf, creating a productive, income-generating investment from the start.",
+    pricePerPlot: "₦700,000 per plot | ₦4,100,000 per acre",
+    plotSize: "Per plot and acre options available",
     type: "farm",
     keyFeatures: [
-      { icon: DollarSign, title: "18% Returns Every 13 Months", description: "Earn while land appreciates" },
-      { icon: Calendar, title: "5-Year Income Period", description: "Up to 100% ROI by Year 5" },
-      { icon: Shield, title: "You Remain Legal Owner", description: "Full ownership retained" },
-      { icon: Home, title: "Future Residential Estate", description: "Converts to built estate" },
+      { icon: DollarSign, title: "15% Annual ROI", description: "Receive yearly returns throughout the term" },
+      { icon: Calendar, title: "5-Year Investment Period", description: "Structured and predictable investment horizon" },
+      { icon: Shield, title: "Full Ownership Retained", description: "You retain access to your farmland" },
+      { icon: Home, title: "Managed Farmland", description: "Pella Farms manages cultivation for you" },
     ],
     whyChoose: [
       { icon: Shield, title: "100% Secure Land", description: "Verified & secure" },
-      { icon: DollarSign, title: "Renewable Energy", description: "Estate powered by green energy" },
+      { icon: DollarSign, title: "Passive Agricultural Income", description: "Returns without day-to-day farm stress" },
       { icon: Waves, title: "Dry Elevated Land", description: "No flooding issues" },
       { icon: Home, title: "Major Road Access", description: "Easy accessibility" },
-      { icon: MapPin, title: "Prime Location", description: "Near major Lagos-Ogun landmarks" },
+      { icon: MapPin, title: "Strategic Location", description: "Along Mowe–Ofada Road near Ofada Rice Market" },
       { icon: FileCheck, title: "Legal Documentation", description: "Proper paperwork" },
     ]
   },
