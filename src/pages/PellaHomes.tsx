@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin, Home, Building2, Wheat, Key, ArrowRight } from "lucide-react";
+import { MapPin, Home, Building2, Wheat, ArrowRight } from "lucide-react";
 import ituraImg from "@/assets/estates/itura.jpg";
 import halleluyahImg from "@/assets/estates/halleluyah.jpg";
 import kingsFlavenImg from "@/assets/estates/kings-flaven.jpg";
@@ -17,6 +17,8 @@ import esperanzaImg from "@/assets/estates/esperanza.jpg";
 import vermon2Img from "@/assets/estates/vermon-2.jpg";
 import goldenCitadelImg from "@/assets/estates/golden-citadel.jpg";
 import prideFarmImg from "@/assets/estates/pride-farm.jpg";
+import courtRoyale1Img from "@/assets/estates/court-royale-1.jpg";
+import { featuredProperties } from "@/data/featuredProperties";
 
 const estates = [
   {
@@ -25,7 +27,7 @@ const estates = [
     image: ituraImg,
     location: "Odogunyan, Ikorodu, Lagos",
     description: "Experience city life and good proximity to industries. Own a plot of 100% dry land with instant physical allocation.",
-    pricePerPlot: "₦700,000",
+    pricePerPlot: "₦1,400,000",
     category: "land"
   },
   {
@@ -57,21 +59,33 @@ const estates = [
   },
   {
     id: "pella-court",
-    name: "Pella's Court",
+    name: featuredProperties["pella-court"].name,
     image: pellaCourtImg,
-    location: "Lekki Gardens, Abraham Adesanya, Ajah",
+    location: featuredProperties["pella-court"].location,
     description: "Pella's Court - Off-plan residential flats in a premium gated community with 24/7 power and modern facilities",
-    pricePerPlot: "₦15,000,000",
-    category: "off-plan"
+    pricePerPlot: featuredProperties["pella-court"].pricePerPlot,
+    category: "off-plan",
+    href: "/properties/pella-court"
   },
   {
-    id: "court-royale-2",
-    name: "Court Royale 2",
+    id: "court-royale-1",
+    name: featuredProperties["court-royale-1"].name,
+    image: courtRoyale1Img,
+    location: featuredProperties["court-royale-1"].location,
+    description: "Premium estate offering solid growth potential in a strategic Ogun corridor",
+    pricePerPlot: featuredProperties["court-royale-1"].pricePerPlot,
+    category: "land",
+    href: "/properties/court-royale-1"
+  },
+  {
+    id: "court-royale-3",
+    name: featuredProperties["court-royale-3"].name,
     image: courtRoyale2Img,
-    location: "Owode, Ofada, Ogun State",
+    location: featuredProperties["court-royale-3"].location,
     description: "Premium estate offering the perfect blend of city convenience and suburban charm",
-    pricePerPlot: "₦3,500,000",
-    category: "land"
+    pricePerPlot: featuredProperties["court-royale-3"].pricePerPlot,
+    category: "land",
+    href: "/properties/court-royale-3"
   },
   {
     id: "esperanza",
@@ -101,13 +115,14 @@ const estates = [
     category: "land"
   },
   {
-    id: "pride-farm",
-    name: "Pride Farm Estate",
+    id: "pride-farms",
+    name: featuredProperties["pride-farms"].name,
     image: prideFarmImg,
-    location: "Owode, Ofada, Ogun State",
+    location: featuredProperties["pride-farms"].location,
     description: "Smart investment: Your land earns 18% every 13 months for 5 years while appreciating in value. You remain the legal owner.",
-    pricePerPlot: "₦600,000",
-    category: "farmlands"
+    pricePerPlot: featuredProperties["pride-farms"].pricePerPlot,
+    category: "farmlands",
+    href: "/properties/pride-farms"
   },
   {
     id: "adopt-a-farm",
@@ -140,6 +155,7 @@ const getCategoryLabel = (category: string) => {
 };
 
 interface Estate {
+  href?: string;
   id: string;
   name: string;
   image?: string;
@@ -154,7 +170,7 @@ const EstateCard = ({ estate, index }: { estate: Estate; index: number }) => {
 
   return (
     <ScrollReveal variant="fadeUp" delay={index * 0.1}>
-      <Link to={`/estates/${estate.id}`}>
+      <Link to={estate.href || `/estates/${estate.id}`}>
         <Card className="glass-panel hover-lift cursor-pointer group h-full overflow-hidden flex flex-col">
           {estate.image && (
             <div className="relative h-56 w-full overflow-hidden shrink-0">

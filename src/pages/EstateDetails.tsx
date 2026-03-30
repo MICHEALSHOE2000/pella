@@ -285,7 +285,7 @@ const estateData: Record<string, DetailedEstate> = {
     ]
   },
   "pride-farm": {
-    name: "Pride Farm Estate",
+    name: "Pride Farms Estate",
     image: prideFarmImg,
     location: "Owode, Ofada, Ogun State",
     headline: "Your Land Works for You",

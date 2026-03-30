@@ -17,11 +17,12 @@ const estates = [
   "Kings Flaven",
   "Irorun Estate",
   "Pella's Court",
-  "Court Royale 2",
+  "Court Royale I",
+  "Court Royale III",
   "Esperanza Ville Estate",
   "Vermon Estate 2",
   "Golden Citadel",
-  "Pride Farm Estate",
+  "Pride Farms Estate",
   "Adopt a Farm Program",
 ];
 
