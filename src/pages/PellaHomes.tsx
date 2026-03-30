@@ -119,7 +119,7 @@ const estates = [
     name: featuredProperties["pride-farms"].name,
     image: prideFarmImg,
     location: featuredProperties["pride-farms"].location,
-    description: "Smart investment: Your land earns 18% every 13 months for 5 years while appreciating in value. You remain the legal owner.",
+    description: "Managed farmland investment with 15% annual ROI while Pella Farms cultivates and manages your land for you.",
     pricePerPlot: featuredProperties["pride-farms"].pricePerPlot,
     category: "farmlands",
     href: "/properties/pride-farms"
@@ -243,7 +243,7 @@ const PellaHomes = () => {
       title: "Farmlands",
       image: prideFarmImg,
       label: "Agro Investment",
-      description: "Earn 18% ROI while your land appreciates in value."
+      description: "Earn 15% annual ROI while your farmland is professionally managed."
     },
     {
       id: "off-plan",

@@ -22,7 +22,7 @@ const estates = [
   "Esperanza Ville Estate",
   "Vermon Estate 2",
   "Golden Citadel",
-  "Pride Farms Estate",
+  "Pride Farms",
   "Adopt a Farm Program",
 ];
 

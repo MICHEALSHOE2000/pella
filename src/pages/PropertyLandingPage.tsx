@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowLeft, CheckCircle2, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -24,10 +24,11 @@ const PropertyLandingPage = () => {
     );
   }
 
+  const isPrideFarms = property.id === "pride-farms";
   const typeLabel = property.category === "off-plan" ? "Off-Plan" : property.category === "farmlands" ? "Farm Estate" : "Residential Estate";
 
-  const contactSales = () => {
-    window.open(`https://wa.me/2349055777795?text=${encodeURIComponent(`I'm interested in ${property.name}`)}`, "_blank");
+  const contactSales = (message = `I'm interested in ${property.name}`) => {
+    window.open(`https://wa.me/2349055777795?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
@@ -52,15 +53,15 @@ const PropertyLandingPage = () => {
           <div className="max-w-4xl">
             <Badge variant="secondary" className="bg-background/90 text-foreground border-primary/30 mb-4">{typeLabel}</Badge>
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-              {property.headline} – {property.priceText}
+              {property.headline}
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">{property.subtitle}</p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={contactSales}>
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => contactSales(`Speak with an investment advisor for ${property.name}`)}>
                 <Phone className="w-4 h-4 mr-2" />
-                Contact Sales
+                Speak With an Investment Advisor
               </Button>
-              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white" onClick={contactSales}>
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white" onClick={() => contactSales(`Chat on WhatsApp about ${property.name}`)}>
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Chat on WhatsApp
               </Button>
@@ -71,6 +72,11 @@ const PropertyLandingPage = () => {
 
       <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto mb-10">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">{property.pageTitle || property.name}</h2>
+            <p className="text-foreground/80 leading-relaxed">{property.coreDescription || property.description}</p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {property.keyFeatures.map((feature) => (
               <Card key={feature.title} className="glass-panel text-center">
@@ -85,32 +91,93 @@ const PropertyLandingPage = () => {
             ))}
           </div>
 
+          {property.roiPoints && (
+            <div className="max-w-4xl mx-auto mb-10">
+              <Card className="glass-panel">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold mb-4">ROI & Value</h3>
+                  <ul className="space-y-3">
+                    {property.roiPoints.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-foreground/80">
+                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
           <div className="max-w-4xl mx-auto">
             <Card className="glass-panel">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">About {property.name}</h3>
-                <p className="text-foreground/80 mb-6 leading-relaxed">{property.description}</p>
+                <h3 className="text-2xl font-bold mb-4">Pricing & Location</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <p className="text-sm text-foreground/60 mb-1">Price</p>
-                    <p className="text-2xl font-bold text-primary">{property.pricePerPlot}</p>
+                    <p className="text-sm text-foreground/60 mb-1">Pricing</p>
+                    {property.pricingLines ? property.pricingLines.map((line) => (
+                      <p key={line} className="text-xl font-bold text-primary">{line}</p>
+                    )) : <p className="text-2xl font-bold text-primary">{property.pricePerPlot}</p>}
                   </div>
                   <div>
                     <p className="text-sm text-foreground/60 mb-1">Size / Type</p>
                     <p className="text-xl font-semibold text-foreground">{property.plotSize}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-foreground/60">
-                  <MapPin className="w-5 h-5" />
-                  <span>{property.location}</span>
+
+                <div className="flex items-start gap-2 text-foreground/70 mb-6">
+                  <MapPin className="w-5 h-5 mt-0.5" />
+                  <div>
+                    {(property.locationLines || [property.location]).map((line) => (
+                      <p key={line}>{line}</p>
+                    ))}
+                  </div>
                 </div>
+
+                {property.benefits && (
+                  <>
+                    <h4 className="text-xl font-bold mb-3">Benefits</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                      {property.benefits.map((benefit) => (
+                        <p key={benefit} className="text-foreground/80 flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-primary" />
+                          {benefit}
+                        </p>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {property.positioningStatement && (
+                  <p className="text-foreground/80 italic border-l-2 border-primary pl-4">{property.positioningStatement}</p>
+                )}
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      <LeadFormSection estateName={property.name} />
+      <LeadFormSection
+        estateName={property.name}
+        title={property.leadFormTitle}
+        description="Fill in your details and our investment team will guide you on the best entry plan."
+        mode={isPrideFarms ? "investment" : "default"}
+      />
+
+      <section className="py-12 bg-background border-t border-border">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4">Secure Your Plot</h3>
+            <p className="text-foreground/70 mb-6">Ready to move forward? Get clarity on pricing, returns, and allocation today.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => contactSales(`Get full investment details for ${property.name}`)}>Get Full Investment Details</Button>
+              <Button variant="outline" onClick={() => contactSales(`Chat on WhatsApp about ${property.name}`)}>Chat on WhatsApp</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

@@ -29,6 +29,14 @@ export interface FeaturedProperty {
   description: string;
   keyFeatures: PropertyFeature[];
   whyChoose: PropertyFeature[];
+  pageTitle?: string;
+  coreDescription?: string;
+  roiPoints?: string[];
+  pricingLines?: string[];
+  locationLines?: string[];
+  positioningStatement?: string;
+  benefits?: string[];
+  leadFormTitle?: string;
 }
 
 export const featuredProperties: Record<string, FeaturedProperty> = {
@@ -60,27 +68,53 @@ export const featuredProperties: Record<string, FeaturedProperty> = {
   },
   "pride-farms": {
     id: "pride-farms",
-    name: "Pride Farms Estate",
+    name: "Pride Farms",
+    pageTitle: "Pride Farms",
     image: prideFarmImg,
-    location: "Owode, Ofada, Ogun State",
+    location: "Owode, Ofada – Ogun State",
     category: "farmlands",
-    priceText: "Starting at ₦600,000 (600sqm)",
-    pricePerPlot: "₦600,000 (600sqm) | 1 Acre: ₦3,500,000",
-    plotSize: "600sqm (1 Plot) | 1 Acre",
-    headline: "Pride Farms: Your Land Works for You",
-    subtitle: "Earn 18% every 13 months for 5 years while your land appreciates.",
-    description: "A future residential estate with an agricultural income model where your land remains legally yours while generating returns.",
+    priceText: "₦700,000 per plot | ₦4,100,000 per acre",
+    pricePerPlot: "₦700,000 per plot | ₦4,100,000 per acre",
+    plotSize: "Per plot and acre options available",
+    headline: "Own a Farm. Earn While You Sleep.",
+    subtitle: "Invest in managed farmland at Pride Farms and earn 15% annual ROI while Pella Farms cultivates and manages your land for you.",
+    description: "Pride Farm Estate gives investors the unique opportunity to own farmland while earning steady yearly returns through professionally managed agricultural operations.",
+    coreDescription: "Pride Farm Estate gives investors the unique opportunity to own farmland while earning steady yearly returns through professionally managed agricultural operations. When an investor purchases a plot, Pella Farms manages and cultivates the land on their behalf, creating a productive, income-generating investment from the start.",
+    roiPoints: [
+      "Earn 15% Return on Investment annually",
+      "Investment period: 5 years",
+      "Receive yearly returns during the investment term",
+      "At the end of 5 years, you retain full ownership and access to your farmland",
+      "You may continue farming, develop the land, or hold it for long-term appreciation",
+    ],
+    pricingLines: ["₦700,000 per plot", "₦4,100,000 per acre"],
+    locationLines: [
+      "Owode, Ofada – Ogun State",
+      "Along Mowe–Ofada Road",
+      "Near Ofada Rice Market",
+      "A short drive from Redemption Camp (RCCG)",
+    ],
+    positioningStatement: "With Pride Farms, you are not just buying land — you are building a sustainable income stream, a future asset, and a legacy investment.",
+    benefits: [
+      "Passive agricultural income",
+      "Professionally managed farmland",
+      "Strategic Ogun location",
+      "Annual returns without daily farm stress",
+      "Long-term asset appreciation",
+      "Full ownership retained",
+    ],
+    leadFormTitle: "Start Your Pride Farms Investment Journey",
     keyFeatures: [
-      { icon: DollarSign, title: "18% Returns", description: "Earn every 13 months for 5 years" },
-      { icon: Calendar, title: "5-Year Income Window", description: "Structured passive-income timeline" },
-      { icon: Shield, title: "Retained Ownership", description: "You keep legal ownership throughout" },
-      { icon: Waves, title: "Dry Elevated Land", description: "Topography suited for future development" },
+      { icon: DollarSign, title: "15% Annual ROI", description: "Earn yearly returns through managed operations" },
+      { icon: Calendar, title: "5-Year Investment Term", description: "Structured timeline with annual payouts" },
+      { icon: Shield, title: "Ownership Retained", description: "Keep full ownership at every stage" },
+      { icon: Waves, title: "Managed Cultivation", description: "Pella Farms handles active farm operations" },
     ],
     whyChoose: [
-      { icon: MapPin, title: "Strategic Corridor", description: "Owode/Ofada growth zone" },
-      { icon: DollarSign, title: "Dual Upside", description: "Income + land appreciation" },
-      { icon: Shield, title: "Verified Documentation", description: "Secure transaction process" },
-      { icon: Home, title: "Future Residential Potential", description: "Positioned for long-term value" },
+      { icon: MapPin, title: "Strategic Location", description: "Owode/Ofada growth corridor" },
+      { icon: DollarSign, title: "Passive Income", description: "Returns without daily farm stress" },
+      { icon: Shield, title: "Professionally Managed", description: "Dedicated agricultural operations team" },
+      { icon: Home, title: "Legacy Asset", description: "Long-term ownership and appreciation" },
     ],
   },
   "court-royale-1": {

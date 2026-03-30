@@ -140,7 +140,7 @@ const LandBanking = () => {
                                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                                     <div>
                                         <div className="inline-block px-4 py-1 rounded-full bg-green-100 text-green-800 text-sm font-bold mb-4">
-                                            Pride Farms Estate
+                                            Pride Farms
                                         </div>
                                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">
                                             Own a Land Now! <br />
@@ -148,7 +148,7 @@ const LandBanking = () => {
                                         </h2>
                                         <p className="text-lg text-muted-foreground mb-6">
                                             Secure your land today in Owode, Ofada, Ogun State. We farm on your land while you sit back and
-                                            enjoy steady 18% annual returns, or let it compound and you earn 100% of your land cost in just 65 months.
+                                            earn 15% annual ROI while Pella Farms cultivates and manages your land on your behalf for a 5-year investment cycle.
                                         </p>
                                         <ul className="space-y-4 mb-8">
                                             <li className="flex items-center gap-3 p-3 rounded-lg bg-green-50 border border-green-100">
@@ -157,7 +157,7 @@ const LandBanking = () => {
                                             </li>
                                             <li className="flex items-center gap-3 p-3 rounded-lg bg-green-50 border border-green-100">
                                                 <div className="bg-green-200 p-1 rounded-full"><Check className="w-4 h-4 text-green-700" /></div>
-                                                <span className="font-medium">Own your land for as low as ₦600k (1 Plot)</span>
+                                                <span className="font-medium">Own your land for as low as ₦700k (1 Plot)</span>
                                             </li>
                                             <li className="flex items-center gap-3 p-3 rounded-lg bg-green-50 border border-green-100">
                                                 <div className="bg-green-200 p-1 rounded-full"><Check className="w-4 h-4 text-green-700" /></div>
@@ -179,7 +179,7 @@ const LandBanking = () => {
                                                 <CardTitle className="text-green-800 text-xl uppercase tracking-wide">1 Plot Package</CardTitle>
                                             </CardHeader>
                                             <CardContent className="text-center pb-8">
-                                                <div className="text-4xl sm:text-5xl font-bold text-green-700 mb-2">₦600K</div>
+                                                <div className="text-4xl sm:text-5xl font-bold text-green-700 mb-2">₦700K</div>
                                                 <p className="text-green-600 text-sm">Outright Payment</p>
                                             </CardContent>
                                         </Card>
@@ -189,8 +189,8 @@ const LandBanking = () => {
                                                 <CardTitle className="text-emerald-800 text-xl uppercase tracking-wide">1 Acre Package (6 Plots)</CardTitle>
                                             </CardHeader>
                                             <CardContent className="text-center pb-8">
-                                                <div className="text-4xl sm:text-5xl font-bold text-emerald-700 mb-2">₦3.5M</div>
-                                                <p className="text-emerald-600 text-sm">Bulk Purchase Discount</p>
+                                                <div className="text-4xl sm:text-5xl font-bold text-emerald-700 mb-2">₦4.1M</div>
+                                                <p className="text-emerald-600 text-sm">Acre Package</p>
                                             </CardContent>
                                         </Card>
                                     </div>
