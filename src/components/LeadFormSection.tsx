@@ -38,6 +38,7 @@ const LeadFormSection = ({
   const [baseLocation, setBaseLocation] = useState("");
   const [wantOption, setWantOption] = useState("");
   const [plotInterest, setPlotInterest] = useState("");
+  const [inspectionPreference, setInspectionPreference] = useState("");
 
   const resetForm = () => {
     setName("");
@@ -52,6 +53,7 @@ const LeadFormSection = ({
     setBaseLocation("");
     setWantOption("");
     setPlotInterest("");
+    setInspectionPreference("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -75,7 +77,7 @@ const LeadFormSection = ({
       return;
     }
 
-    if (mode === "court-royale" && (!baseLocation || !wantOption || !plotInterest || !budget || !timeline)) {
+    if (mode === "court-royale" && (!baseLocation || !wantOption || !plotInterest || !budget || !timeline || !inspectionPreference)) {
       toast({
         title: "Please complete your preferences",
         description: "All estate preference fields are required.",
@@ -110,6 +112,7 @@ const LeadFormSection = ({
             plotInterest,
             budget,
             timeline,
+            inspection: inspectionPreference,
             additionalNote: note || "N/A",
           }
         : {
@@ -305,6 +308,17 @@ const LeadFormSection = ({
                         </SelectContent>
                       </Select>
                     </div>
+                    <div className="space-y-2 md:col-span-2">
+                      <Label>Inspection — Would you like to inspect the site?</Label>
+                      <Select value={inspectionPreference} onValueChange={setInspectionPreference}>
+                        <SelectTrigger><SelectValue placeholder="Select inspection preference" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Yes">Yes</SelectItem>
+                          <SelectItem value="No">No</SelectItem>
+                          <SelectItem value="Virtual inspection">Virtual inspection</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </>
                 )}
 
@@ -317,7 +331,7 @@ const LeadFormSection = ({
                     <MessageCircle className="w-4 h-4 mr-2" />
                     {submitting ? "Submitting..." : isCourtRoyale ? "Get Price Details" : "Submit Enquiry"}
                   </Button>
-                  {(mode === "default" || isCourtRoyale) && (
+                  {mode === "default" && (
                     <Button type="button" variant="outline" className="w-full" onClick={() => window.open("https://wa.me/2349055777795", "_blank")}>Chat on WhatsApp</Button>
                   )}
                 </div>
