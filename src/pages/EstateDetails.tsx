@@ -25,7 +25,7 @@ import esperanzaImg from "@/assets/estates/esperanza.jpg";
 import vermon2Img from "@/assets/estates/vermon-2.jpg";
 import goldenCitadelImg from "@/assets/estates/golden-citadel.jpg";
 import prideFarmImg from "@/assets/estates/pride-farm.jpg";
-import kingsFlavenImg from "@/assets/estates/kings-flaven.jpg";
+import kingsHavenImg from "@/assets/estates/kings-flaven.jpg";
 
 // Pella Courts gallery images
 import pellaCourts1 from "@/assets/estates/pella-courts-1.jpg";
@@ -63,11 +63,11 @@ const estateData: Record<string, DetailedEstate> = {
     image: ituraImg,
     location: "Odogunyan, Ikorodu, Lagos",
     headline: "Own a Secure Plot at Itura Estate",
-    priceText: "Starting at ₦1.4M (600sqm)",
+    priceText: "Starting at ₦2.0M (500sqm)",
     subtitle: "Flexible 3, 6 & 12-Month Payment Plans. Dry Table Land. Instant Allocation",
     description: "Experience city life and good proximity to industries at Itura. Own a plot of our 100% dry land. Itura has untapped potential, natural beauty, investment incentives, diverse opportunities, and a secured community.",
-    pricePerPlot: "₦1,400,000",
-    plotSize: "600sqm",
+    pricePerPlot: "₦2,000,000",
+    plotSize: "500sqm",
     type: "estate",
     keyFeatures: [
       { icon: Shield, title: "Secure Fenced Estate", description: "Perimeter fencing for security" },
@@ -112,15 +112,15 @@ const estateData: Record<string, DetailedEstate> = {
       { icon: Shield, title: "Perimeter Fencing", description: "Fully secured" },
     ]
   },
-  "kings-flaven": {
-    name: "Kings Flaven",
-    image: kingsFlavenImg,
+  "kings-haven": {
+    name: "King's Haven",
+    image: kingsHavenImg,
     location: "Premium Location, Lagos",
-    headline: "Exclusive Living at Kings Flaven",
-    priceText: "Starting at ₦4.0M (700sqm)",
+    headline: "Exclusive Living at King's Haven",
+    priceText: "Starting at ₦7.5M (700sqm)",
     subtitle: "Premium features designed for discerning property owners seeking luxury",
     description: "Exclusive estate with premium features designed for discerning property owners seeking luxury and comfort.",
-    pricePerPlot: "₦4,000,000",
+    pricePerPlot: "₦7,500,000",
     plotSize: "700sqm",
     type: "estate",
     keyFeatures: [

@@ -14,7 +14,7 @@ import { toast } from "@/hooks/use-toast";
 const estates = [
   "Itura Estate",
   "Halleluyah Estates",
-  "Kings Flaven",
+  "King's Haven",
   "Irorun Estate",
   "Pella's Court",
   "Court Royale I",

@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MapPin, Home, Building2, Wheat, ArrowRight } from "lucide-react";
 import ituraImg from "@/assets/estates/itura.jpg";
 import halleluyahImg from "@/assets/estates/halleluyah.jpg";
-import kingsFlavenImg from "@/assets/estates/kings-flaven.jpg";
+import kingsHavenImg from "@/assets/estates/kings-flaven.jpg";
 import irorunImg from "@/assets/estates/irorun.jpg";
 import pellaCourtImg from "@/assets/estates/pella-courts-1.jpg";
 import courtRoyale2Img from "@/assets/estates/court-royale-2.jpg";
@@ -27,7 +27,7 @@ const estates = [
     image: ituraImg,
     location: "Odogunyan, Ikorodu, Lagos",
     description: "Experience city life and good proximity to industries. Own a plot of 100% dry land with instant physical allocation.",
-    pricePerPlot: "₦1,400,000",
+    pricePerPlot: "₦2,000,000",
     category: "land"
   },
   {
@@ -40,12 +40,12 @@ const estates = [
     category: "land"
   },
   {
-    id: "kings-flaven",
-    name: "Kings Flaven",
-    image: kingsFlavenImg,
+    id: "kings-haven",
+    name: "King's Haven",
+    image: kingsHavenImg,
     location: "Premium Location, Lagos",
     description: "Exclusive estate with premium features designed for modern living",
-    pricePerPlot: "₦4,000,000",
+    pricePerPlot: "₦7,500,000",
     category: "land"
   },
   {
